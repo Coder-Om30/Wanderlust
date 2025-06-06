@@ -29,6 +29,13 @@ const { Server } = require("http");
 //MOGODB ATLUS Server
 const dbUrl = process.env.ATLAS_URL;
 
+// Warn if dbUrl is missing or looks incorrect
+if (!dbUrl || !dbUrl.startsWith("mongodb+srv://")) {
+    console.error("ERROR: Your ATLAS_URL is missing or not using the correct SRV format.");
+    console.error("It should look like: mongodb+srv://<username>:<password>@cluster0.xi5yf.mongodb.net/<dbname>?retryWrites=true&w=majority");
+    process.exit(1);
+}
+
 main()
 .then(() => {
     console.log("connected to DB")
@@ -38,7 +45,17 @@ main()
 });
 
 async function main() {  
-    await mongoose.connect(dbUrl);  
+    await mongoose.connect(dbUrl, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      // tlsAllowInvalidCertificates: true, // Uncomment ONLY for local testing if you have certificate issues
+    })
+    .then(() => {
+      console.log("MongoDB connected");
+    })
+    .catch((err) => {
+      console.error("MongoDB connection error:", err);
+    });
 }
 
 
@@ -91,7 +108,6 @@ app.use((req, res, next) => {
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
-
 
 app.all("*", (req, res, next) => {
     next(new ExpressError(404, "Page not found!!"));

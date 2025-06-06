@@ -1,5 +1,3 @@
-
-
 const express = require("express");
 const router = express.Router();
 const wrapAsync = require("../utils/wrapAsync.js");
@@ -11,6 +9,23 @@ const lisitngController = require("../controllers/listings.js");
 const multer = require("multer"); 
 const {storage} = require("../cloudConfig.js");
 const upload = multer({ storage }); 
+
+
+// Search route (must be before any '/:id' route)
+router.get("/search", async (req, res) => {
+    const { q } = req.query;
+    let listings = [];
+    if (q) {
+        // Simple case-insensitive search by title or location
+        listings = await Listing.find({
+            $or: [
+                { title: { $regex: q, $options: "i" } },
+                { location: { $regex: q, $options: "i" } }
+            ]
+        });
+    }
+    res.render("listings/index", { allListings: listings });
+});
 
 
 
@@ -45,17 +60,6 @@ router
         wrapAsync(lisitngController.destroyListing)
     );
     
-
-
-
-
-
-
-
-
-
-
-
 //Edit Route
 router.get("/:id/edit", 
     isLoggedIn,
