@@ -1,5 +1,3 @@
-
-
 const Joi = require("joi");
 
 //Schema for listings
