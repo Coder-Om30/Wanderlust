@@ -1,27 +1,37 @@
+## 🧰 Technologies Used
 
-# Project-Wanderlust
+Project-Wanderlust is a full-stack web application built using the **MERN stack**, designed to help users discover and list hotels across global destinations.
 
- This project was created from local system
- It's a Full Stack Project based on MERN Development.  This project buliding idea is to list the hotels of different cities globally so that it can easily accessible to    
- your vacation place.
- 
-#  Frontend:
- HTML5 / CSS3 / JAVA SCRIPT
+### 🌐 Frontend
+- **HTML5** — Semantic structure and markup
+- **CSS3** — Styling and responsive design
+- **JavaScript** — Dynamic client-side interactions
+- **Bootstrap** — UI components and layout framework
 
-# Backend:
-1. NODE.JS
-2. EXPRESS.JS
+### ⚙️ Backend
+- **Node.js** — JavaScript runtime for server-side logic
+- **Express.js** — Web framework for building RESTful APIs
 
-# Database:
-1. MONGO-DB
+### 🗄️ Database
+- **MongoDB** — NoSQL database for storing hotel listings and user data
 
-# Framework
-1. BOOTSTRAP
+### 🧩 Architecture
+- **MVC Framework** — Separation of concerns for scalability and maintainability
+- **REST APIs** — Structured endpoints for client-server communication
 
-# Other
-  This project also have implemented with  MVC Freamwork / REST API'S 
+## 🚀 Getting Started
 
-  
+### Clone the Repository
+```bash
+git clone https://github.com/Coder-Om30/Wanderlust.git
+cd Wanderlust
+npm install
+npm start
+
+---
+
+This setup ensures a robust, scalable, and user-friendly platform for hotel discovery and booking. Want help adding deployment instructions or a live demo section next?
+
 
 
 
